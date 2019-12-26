@@ -10,33 +10,34 @@ import (
 	"github.com/warthog618/gpio"
 )
 
-func Blink(pn int) {
+// Blink expects an integer value and you should provide the GPIO pin number
+// that you want to control the LED with.
+func Blink(p int) {
 	if err := gpio.Open(); err != nil {
 		log.Fatal(err)
 	}
 	defer gpio.Close()
 
-	pin := gpio.NewPin(pn)
+	pin := gpio.NewPin(p)
 	pin.Output()
+	pin.Mode()
 
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 
-	go cleanup(c)
+	go cleanup(c, pin)
 
 	for {
 		pin.Toggle()
 		time.Sleep(time.Second)
 	}
+
 }
 
-func cleanup(c chan os.Signal) {
+func cleanup(c chan os.Signal, p *gpio.Pin) {
 	<-c
 
-	halt()
-}
-
-func halt() {
+	p.Low()
 	gpio.Close()
-	os.Exit(1)
+	os.Exit(0)
 }
