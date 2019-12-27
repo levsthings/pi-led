@@ -12,7 +12,7 @@ import (
 
 // Blink expects an integer value and you should provide the GPIO pin number
 // that you want to control the LED with.
-func Blink(p int) {
+func Blink(p int, s int) {
 	if err := gpio.Open(); err != nil {
 		log.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func Blink(p int) {
 
 	go cleanup(c, pin)
 
-	for {
+	for i := 0; i < s; i++ {
 		pin.Toggle()
 		time.Sleep(time.Second)
 	}
