@@ -1,7 +1,7 @@
 package main
 
 import (
-	piled "github.com/levsthings/pi-blink"
+	piled "github.com/levsthings/pi-led"
 )
 
 func main() {
