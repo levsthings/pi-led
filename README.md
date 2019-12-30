@@ -7,7 +7,7 @@ Utility for blinking LEDs via a Raspberry Pi.
 ### Details
 
 
-This project uses a GPIO for controlling an LED.
+This project uses a GPIO pin for controlling an LED.
 
 
 ### Usage
