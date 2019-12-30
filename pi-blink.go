@@ -10,7 +10,7 @@ import (
 	"github.com/warthog618/gpio"
 )
 
-// Blink expects an integer value and you should provide the GPIO pin number
+// Blink expects an integer value, you should provide the GPIO pin number
 // that you want to control the LED with.
 func Blink(p int, s int) {
 	if err := gpio.Open(); err != nil {
