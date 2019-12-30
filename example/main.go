@@ -1,7 +1,7 @@
 package main
 
 import (
-	piblink "github.com/levsthings/pi-blink"
+	piled "github.com/levsthings/pi-blink"
 )
 
 func main() {
@@ -9,5 +9,5 @@ func main() {
 		pin      = 26
 		duration = 20 // Seconds
 	)
-	piblink.Blink(pin, duration)
+	piled.Blink(pin, duration)
 }

@@ -1,4 +1,4 @@
-# pi-blink
+# pi-led
 
 
 Utility for blinking LEDs via a Raspberry Pi. 
@@ -13,13 +13,13 @@ This project uses a GPIO for controlling an LED.
 ### Usage
 
 
-You can import `pi-blink` as a library, and blink an LED for a given duration.
+You can import `pi-led` as a library, and blink an LED for a given duration.
 
 ```go
 package main
 
 import (
-	piblink "github.com/levsthings/pi-blink"
+	piled "github.com/levsthings/pi-led"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 		pin      = 26
 		duration = 20 // Seconds
 	)
-	piblink.Blink(pin, duration)
+	piled.Blink(pin, duration)
 }
 ```
 
