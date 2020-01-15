@@ -1,7 +1,7 @@
 package piled
 
 import (
-	"log"
+	"errors"
 	"os"
 	"os/signal"
 	"syscall"
@@ -12,9 +12,9 @@ import (
 
 // Blink expects an integer value, you should provide the GPIO pin number
 // that you want to control the LED with.
-func Blink(p int, s int) {
+func Blink(p int, s int) error {
 	if err := gpio.Open(); err != nil {
-		log.Fatal(err)
+		return errors.New("couldn't establish GPIO connection")
 	}
 	defer gpio.Close()
 
@@ -31,13 +31,12 @@ func Blink(p int, s int) {
 		pin.Toggle()
 		time.Sleep(time.Second)
 	}
-
+	return nil
 }
 
 func cleanup(c chan os.Signal, p *gpio.Pin) {
 	<-c
 
 	p.Low()
-	gpio.Close()
 	os.Exit(0)
 }
